@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/nav_header"
     android:layout_width="match_parent"
     android:layout_height="160dp"
-    android:background="@color/colorAccent"
+    android:background="@color/blue_900"
     android:clickable="true"
     android:focusable="true"
     android:foreground="?attr/selectableItemBackgroundBorderless"
@@ -11,6 +13,16 @@
     android:orientation="vertical"
     android:padding="16dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_margin="2dp"
+        app:civ_border_color="#fff"
+        app:civ_border_width="2dp"
+        android:id="@+id/imagePerfil"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/logo"
+        android:layout_width="80dp"
+        android:layout_height="80dp" />
 
     <ImageView
         android:id="@+id/nav_header_imageView"

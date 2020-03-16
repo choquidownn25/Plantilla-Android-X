@@ -45,7 +45,7 @@ public class PerfilActivity extends AppCompatActivity {
         if (firebaseAuth.getCurrentUser() != null) {
             Nombre=firebaseAuth.getCurrentUser().getDisplayName();
             textId.setText(firebaseAuth.getCurrentUser().getUid());
-            if (Nombre.isEmpty()){
+            if (Nombre== null){
                 textNombreCliente.setText(firebaseAuth.getCurrentUser().getUid());
             }else {
                 textNombreCliente.setText(Nombre);

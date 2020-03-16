@@ -29,6 +29,7 @@ import android.webkit.WebView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 // import android.support.v4.app.Fragment;
@@ -45,6 +46,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import com.bumptech.glide.Glide;
 import com.example.plantilla.Orden.ActivityOrden;
 import com.example.plantilla.Perfil.PerfilActivity;
 import com.example.plantilla.R;
@@ -53,18 +55,31 @@ import com.example.plantilla.ui.adapter.CardAdapter;
 import com.example.plantilla.ui.adapter.SectionsPagerAdapter;
 import com.example.plantilla.ui.fragment.PlaceholderFragment;
 import com.example.plantilla.ui.models.Movie;
+import com.example.plantilla.ui.models.Usuarios;
 import com.example.plantilla.ui.tab.fragment.NavigationDrawerFragment;
 import com.example.plantilla.ui.utilidades.Utils;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity implements CardAdapter.Listener, NavigationView.OnNavigationItemSelectedListener {
 
     //<editor-fold desc="Aributos">
+    CircleImageView image_profile;
+    private NavigationView navigationView;
     private MenuItem mMenuItem;
     static boolean sIsNight = false;
     private static final String ARG_SECTION_NUMBER = "section_number";
@@ -107,13 +122,18 @@ public class MainActivity extends AppCompatActivity implements CardAdapter.Liste
     private int posicion = 0;
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
-    private NavigationView navigationView;
+
     private String drawerTitle;
 
     private NavigationDrawerFragment mNavigationDrawerFragment;
     private CharSequence mTitle;
     private FloatingActionButton fab;
     private ImageButton imageButton;
+    //Firebase autenticacion
+    private FirebaseAuth mAut;
+    //Firebase usuario
+    private FirebaseUser firebaseUser;
+    public TextView nombre;
     //</editor-fold>
 
     @Override
@@ -134,6 +154,9 @@ public class MainActivity extends AppCompatActivity implements CardAdapter.Liste
         mViewPager.setAdapter(mSectionsPagerAdapter);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         fab = findViewById(R.id.fab);
+        //permite que se vean los datos en el menu
+
+        ImageView imageView = (ImageView) findViewById(R.id.nav_header_imageView);
         tabLayout.setupWithViewPager(mViewPager);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -151,6 +174,8 @@ public class MainActivity extends AppCompatActivity implements CardAdapter.Liste
                 startActivity(intent);
             }
         });
+
+
     }
 
     public void onBackPressed() {
@@ -254,5 +279,30 @@ public class MainActivity extends AppCompatActivity implements CardAdapter.Liste
     }
 
     public void showText(String topText, String bottomText) {
+    }
+
+    private void InfoPantalla(){
+        //Hace que se muetren los datos personales en pantalla como nombre etc
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Usuarios").child(firebaseUser.getUid());
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                //Usuarios usuarios = dataSnapshot.getValue(Usuarios.class);
+                if (dataSnapshot.exists()) {
+                    //nombre.setText(usuarios.getNombre());
+                    Glide.with(getApplicationContext()).load(("http://goo.gl/gEgYUd"))
+                    .into(image_profile);
+
+                }
+
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 }
