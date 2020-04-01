@@ -108,7 +108,8 @@ public class SignupActivity extends AppCompatActivity {
                             SignupActivity.this.showToast(SignupActivity.this.getString(R.string.auth_failed_signup) + task.getException());
                             Toast.makeText(getApplicationContext(), SignupActivity.this.getString(R.string.auth_failed_signup) +  task.getException(),Toast.LENGTH_LONG).show();
                         } else {
-                            SignupActivity.this.startActivity(new Intent(SignupActivity.this, MainActivity.class));
+                            //startActivity(new Intent(SignUpActivity.this, EditProfileActivity.class));
+                            SignupActivity.this.startActivity(new Intent(SignupActivity.this, EditProfileActivity.class));
                             Toast.makeText(getApplicationContext(), SignupActivity.this.getString(R.string.auth_failed_success), Toast.LENGTH_LONG).show();
                             SignupActivity.this.finish();
                         }
@@ -125,5 +126,8 @@ public class SignupActivity extends AppCompatActivity {
     public void showToast(String toastText) {
         Toast.makeText(this, toastText, Toast.LENGTH_SHORT).show();
     }
-
+    public void navigate_sign_in(View v){
+        Intent inent = new Intent(this, SignInActivity.class);
+        startActivity(inent);
+    }
 }

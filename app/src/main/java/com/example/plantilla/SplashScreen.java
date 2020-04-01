@@ -10,10 +10,8 @@ import android.os.Bundle;
 // import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.WindowManager;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 
-import com.example.plantilla.account.activity.LoginActivity;
+import com.example.plantilla.account.activity.PagerActivity;
 
 public class SplashScreen extends Activity {
 
@@ -50,7 +48,7 @@ public class SplashScreen extends Activity {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                Intent intent = new Intent(SplashScreen.this, LoginActivity.class);
+                Intent intent = new Intent(SplashScreen.this, PagerActivity.class);
                 intent.putExtra("message", message);
                 intent.putExtra("url", url);
                 startActivity(intent);

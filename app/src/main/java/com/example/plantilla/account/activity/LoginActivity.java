@@ -20,6 +20,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -43,18 +44,18 @@ public class LoginActivity extends AppCompatActivity {
         btnSignup  = (Button) findViewById(R.id.btn_signup);
         progressBar  = (ProgressBar) findViewById(R.id.progressBar);
         firebaseAuth = FirebaseAuth.getInstance();
-
+        firebaseAuth.addAuthStateListener(authStateListener);
 
         // proceso de inicio de sesión automático
         // pasar a la actividad principal si el usuario ya inició sesión
 
-        if (firebaseAuth.getCurrentUser() != null) {
+        /*if (firebaseAuth.getCurrentUser() != null) {
             // User is logged in
-            startActivity(new Intent(LoginActivity.this, PagerActivity.class));
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
             finish();
-        }
+        }*/
         //Retorno de instancia de esta clase
-        firebaseAuth = FirebaseAuth.getInstance();
+        //firebaseAuth = FirebaseAuth.getInstance();
         //Registrar usuario
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,4 +115,21 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    FirebaseAuth.AuthStateListener authStateListener = new FirebaseAuth.AuthStateListener() {
+        @Override
+        public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+            FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+
+            if (firebaseUser == null) {
+                Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
+                startActivity(intent);
+                finish();
+            }
+            if (firebaseUser != null) {
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        }
+    };
 }

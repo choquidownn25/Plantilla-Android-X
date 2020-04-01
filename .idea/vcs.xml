@@ -2,5 +2,6 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$/Plantilla-Android" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Plantilla-Android-X" vcs="Git" />
   </component>
 </project>

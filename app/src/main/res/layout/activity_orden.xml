@@ -427,5 +427,6 @@
         app:layout_anchor="@id/app_bar_layout"
         app:layout_anchorGravity="bottom|right|end"
         app:pressedTranslationZ="12dp" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

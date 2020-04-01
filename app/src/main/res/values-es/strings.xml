@@ -589,4 +589,18 @@ Traductor de Google para empresas:Google Translator Toolki</string>
     <string name="numerotres">3</string>
     <string name="numerocuatro">4</string>
     <string name="numerocinco">5</string>
+    <string name="encusta">Encuesta</string>
+    <string name="create_profile">Crear Perfil</string>
+    <string name="name">Nombre</string>
+    <string name="enter_your_name">Ingrese su nombre</string>
+    <string name="surname">Apellido</string>
+    <string name="enter_your_surname">Ingrese su apellido</string>
+    <string name="phone_number">Numero Telefonico</string>
+    <string name="enter_your_phone_number">Enter your phone number</string>
+    <string name="e_mail">Email</string>
+    <string name="email_address">Direccion Email</string>
+    <string name="editar">Editar Usuario</string>
+    <string name="edit_profile">Editar Perfil</string>
+    <string name="dies">Telefono</string>
+    <string name="mail_address">Direccion Email</string>
 </resources>

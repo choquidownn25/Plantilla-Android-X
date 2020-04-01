@@ -152,9 +152,9 @@ public class MainActivityChat extends AppCompatActivity {
             fotoReferencia.putFile(u).addOnSuccessListener(this, new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    Uri u = taskSnapshot.getDownloadUrl();
-                    MensajeEnviar m = new MensajeEnviar("Kevin te ha enviado una foto",u.toString(),nombre.getText().toString(),fotoPerfilCadena,"2",ServerValue.TIMESTAMP);
-                    databaseReference.push().setValue(m);
+                    //Uri u = taskSnapshot.getDownloadUrl();
+                    //MensajeEnviar m = new MensajeEnviar("Kevin te ha enviado una foto",u.toString(),nombre.getText().toString(),fotoPerfilCadena,"2",ServerValue.TIMESTAMP);
+                    //databaseReference.push().setValue(m);
                 }
             });
         }else if(requestCode == PHOTO_PERFIL && resultCode == RESULT_OK){
@@ -164,8 +164,8 @@ public class MainActivityChat extends AppCompatActivity {
             fotoReferencia.putFile(u).addOnSuccessListener(this, new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    Uri u = taskSnapshot.getDownloadUrl();
-                    fotoPerfilCadena = u.toString();
+                    // Uri u = taskSnapshot.getDownloadUrl();
+                    //fotoPerfilCadena = u.toString();
                     MensajeEnviar m = new MensajeEnviar("Kevin ha actualizado su foto de perfil",u.toString(),nombre.getText().toString(),fotoPerfilCadena,"2",ServerValue.TIMESTAMP);
                     databaseReference.push().setValue(m);
                     Glide.with(MainActivityChat.this).load(u.toString()).into(fotoPerfil);

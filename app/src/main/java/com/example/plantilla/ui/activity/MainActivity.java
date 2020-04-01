@@ -21,6 +21,7 @@ import android.os.Bundle;
 // import android.support.v7.widget.RecyclerView;
 // import android.support.v7.widget.Toolbar;
 import android.util.SparseArray;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -47,9 +48,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.Target;
 import com.example.plantilla.Orden.ActivityOrden;
 import com.example.plantilla.Perfil.PerfilActivity;
 import com.example.plantilla.R;
+import com.example.plantilla.account.activity.EditProfileActivity;
+import com.example.plantilla.account.activity.ProfileActivity;
 import com.example.plantilla.cardio.MainActivityCardio;
 import com.example.plantilla.ui.adapter.CardAdapter;
 import com.example.plantilla.ui.adapter.SectionsPagerAdapter;
@@ -134,6 +139,7 @@ public class MainActivity extends AppCompatActivity implements CardAdapter.Liste
     //Firebase usuario
     private FirebaseUser firebaseUser;
     public TextView nombre;
+    private ImageView imageView;
     //</editor-fold>
 
     @Override
@@ -155,16 +161,24 @@ public class MainActivity extends AppCompatActivity implements CardAdapter.Liste
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         fab = findViewById(R.id.fab);
         //permite que se vean los datos en el menu
+        drawerLayout = findViewById(R.id.drawer_layout);
+        imageView = (ImageView) findViewById(R.id.nav_header_imageView);
+        ImageView menuIcon = (ImageView) findViewById(R.id.nav_header_imageView);
 
-        ImageView imageView = (ImageView) findViewById(R.id.nav_header_imageView);
+        navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
         tabLayout.setupWithViewPager(mViewPager);
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+
         NavigationView navigationView = findViewById(R.id.nav_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.Open, R.string.Close);
-        drawer.addDrawerListener(toggle);
+                this, drawerLayout, toolbar, R.string.Open, R.string.Close);
+        drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-        navigationView.setNavigationItemSelectedListener(this);
+        //actionBarDrawerToggle.syncState();
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -182,6 +196,7 @@ public class MainActivity extends AppCompatActivity implements CardAdapter.Liste
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
+
         } else {
             super.onBackPressed();
         }
@@ -249,7 +264,7 @@ public class MainActivity extends AppCompatActivity implements CardAdapter.Liste
 
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
-
+        Toast.makeText(this, "You just selected " +  "!", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -259,11 +274,14 @@ public class MainActivity extends AppCompatActivity implements CardAdapter.Liste
 
         if (id == R.id.nav_item_one) {
             // Handle the camera action
-            Intent intent = new Intent(MainActivity.this, PerfilActivity.class);
+            Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
             startActivity(intent);
-        } /*else if (id == R.id.nav_item_two) {
-
-        } else if (id == R.id.nav_item_three) {
+        }
+        if (id == R.id.nav_item_two) {
+            // Handle the camera action
+            Intent intent = new Intent(MainActivity.this, EditProfileActivity.class);
+            startActivity(intent);
+        } /*else if (id == R.id.nav_item_three) {
 
         } else if (id == R.id.nav_item_four) {
 

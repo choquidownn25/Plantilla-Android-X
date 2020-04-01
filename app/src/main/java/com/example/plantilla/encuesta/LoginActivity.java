@@ -17,7 +17,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.plantilla.R;
-import com.example.plantilla.account.activity.PagerActivity;
 import com.example.plantilla.account.activity.ResetActivity;
 import com.example.plantilla.account.activity.SignupActivity;
 import com.example.plantilla.ui.activity.MainActivity;
@@ -25,6 +24,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -52,10 +52,10 @@ public class LoginActivity extends AppCompatActivity {
         btnSignup  = (Button) findViewById(R.id.btn_signup);
         demo= (Button) findViewById(R.id.demo);
         progressBar  = (ProgressBar) findViewById(R.id.progressBar);
-        firebaseAuth = FirebaseAuth.getInstance();
 
         //Retorno de instancia de esta clase
         firebaseAuth = FirebaseAuth.getInstance();
+        firebaseAuth.addAuthStateListener(authStateListener);
         //Registrar usuario
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,6 +135,22 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    FirebaseAuth.AuthStateListener authStateListener = new FirebaseAuth.AuthStateListener() {
+        @Override
+        public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+            FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
 
+            if (firebaseUser == null) {
+                Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
+                startActivity(intent);
+                finish();
+            }
+            if (firebaseUser != null) {
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        }
+    };
 
 }

@@ -173,7 +173,7 @@ public class PagerActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Intent intent = new Intent(PagerActivity.this, MainInicioActivity.class);
                 //Intent intent = new Intent(PagerActivity.this, MainActivity.class);
-                 Intent intent = new Intent(PagerActivity.this, com.example.plantilla.encuesta.LoginActivity.class);
+                Intent intent = new Intent(PagerActivity.this, com.example.plantilla.account.activity.LoginActivity.class);
 
                 startActivity(intent);
             }
@@ -186,7 +186,7 @@ public class PagerActivity extends AppCompatActivity {
                 //  update 1st time pref
                 // Intent intent = new Intent(PagerActivity.this, MainInicioActivity.class);
                 // Intent intent = new Intent(PagerActivity.this, MainActivity.class);
-                Intent intent = new Intent(PagerActivity.this, com.example.plantilla.encuesta.LoginActivity.class);
+                Intent intent = new Intent(PagerActivity.this, com.example.plantilla.account.activity.LoginActivity.class);
                 startActivity(intent);
 
             }
