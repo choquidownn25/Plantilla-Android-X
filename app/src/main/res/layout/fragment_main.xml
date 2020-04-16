@@ -64,6 +64,7 @@
             android:padding="@dimen/button_elevation"
             android:text="center card"/>
 
+
     </com.github.captain_miao.optroundcardview.OptRoundCardView>
 
     <View

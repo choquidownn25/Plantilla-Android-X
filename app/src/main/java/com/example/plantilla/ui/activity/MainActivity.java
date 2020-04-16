@@ -20,6 +20,7 @@ import android.os.Bundle;
 // import android.support.v7.app.AppCompatDelegate;
 // import android.support.v7.widget.RecyclerView;
 // import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.Gravity;
 import android.view.Menu;
@@ -27,6 +28,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.webkit.WebView;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -55,6 +57,7 @@ import com.example.plantilla.Perfil.PerfilActivity;
 import com.example.plantilla.R;
 import com.example.plantilla.account.activity.EditProfileActivity;
 import com.example.plantilla.account.activity.ProfileActivity;
+import com.example.plantilla.account.activity.model.Userinformation;
 import com.example.plantilla.cardio.MainActivityCardio;
 import com.example.plantilla.ui.adapter.CardAdapter;
 import com.example.plantilla.ui.adapter.SectionsPagerAdapter;
@@ -74,8 +77,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
 import com.squareup.picasso.Picasso;
-
+import com.crashlytics.android.Crashlytics;
+import io.fabric.sdk.android.Fabric;
 import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -140,12 +145,20 @@ public class MainActivity extends AppCompatActivity implements CardAdapter.Liste
     private FirebaseUser firebaseUser;
     public TextView nombre;
     private ImageView imageView;
+    private FirebaseUser user;
+    private FirebaseAuth firebaseAuth;
+    private FirebaseStorage firebaseStorage;
+    private FirebaseDatabase firebaseDatabase;
+    private String TAG  = "MainActivity";
+    private String DatoTelefono;
+    private EditText mLoginName;
     //</editor-fold>
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_naview);
+        Fabric.with(this, new Crashlytics());
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
         context = getApplicationContext();
         contexts = getParent();
@@ -177,7 +190,26 @@ public class MainActivity extends AppCompatActivity implements CardAdapter.Liste
         //actionBarDrawerToggle.syncState();
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        firebaseStorage = FirebaseStorage.getInstance();
+        user=firebaseAuth.getCurrentUser();
+        DatabaseReference databaseReference = firebaseDatabase.getReference(firebaseAuth.getUid());
 
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange( DataSnapshot dataSnapshot) {
+                Userinformation userProfile = dataSnapshot.getValue(Userinformation.class);
+                //toolbar.setTitle(userProfile.getUserName());
+                DatoTelefono=userProfile.getUserPhoneno();
+            }
+            @Override
+            public void onCancelled( DatabaseError databaseError) {
+                Toast.makeText(MainActivity.this, databaseError.getMessage(), Toast.LENGTH_LONG).show();
+                Log.e(TAG, databaseError.getMessage());
+                Fabric.getLogger().e(Fabric.TAG, "Failed to load splah" + databaseError.getMessage());
+            }
+        });
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -270,18 +302,20 @@ public class MainActivity extends AppCompatActivity implements CardAdapter.Liste
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         // Handle navigation view item clicks here.
-        int id = menuItem.getItemId();
+        try{
 
-        if (id == R.id.nav_item_one) {
-            // Handle the camera action
-            Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
-            startActivity(intent);
-        }
-        if (id == R.id.nav_item_two) {
-            // Handle the camera action
-            Intent intent = new Intent(MainActivity.this, EditProfileActivity.class);
-            startActivity(intent);
-        } /*else if (id == R.id.nav_item_three) {
+            int id = menuItem.getItemId();
+
+            if (id == R.id.nav_item_one) {
+                // Handle the camera action
+                Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+                startActivity(intent);
+            }
+            if (id == R.id.nav_item_two) {
+                // Handle the camera action
+                Intent intent = new Intent(MainActivity.this, EditProfileActivity.class);
+                startActivity(intent);
+            } /*else if (id == R.id.nav_item_three) {
 
         } else if (id == R.id.nav_item_four) {
 
@@ -291,36 +325,21 @@ public class MainActivity extends AppCompatActivity implements CardAdapter.Liste
 
         }*/
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
+            DrawerLayout drawer = findViewById(R.id.drawer_layout);
+            drawer.closeDrawer(GravityCompat.START);
+            return true;
+        }catch (Exception e){
+            Log.e(TAG,"Failed to load icon" + e.getMessage());
+            Fabric.getLogger().e(Fabric.TAG, "Failed to load icon", e);
+            return false;
+        }
+
+
     }
 
     public void showText(String topText, String bottomText) {
     }
 
-    private void InfoPantalla(){
-        //Hace que se muetren los datos personales en pantalla como nombre etc
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Usuarios").child(firebaseUser.getUid());
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                //Usuarios usuarios = dataSnapshot.getValue(Usuarios.class);
-                if (dataSnapshot.exists()) {
-                    //nombre.setText(usuarios.getNombre());
-                    Glide.with(getApplicationContext()).load(("http://goo.gl/gEgYUd"))
-                    .into(image_profile);
-
-                }
 
 
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }
 }

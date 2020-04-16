@@ -1,5 +1,6 @@
 package com.example.plantilla.account.activity;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -20,6 +21,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.example.plantilla.R;
 import com.example.plantilla.account.activity.model.Userinformation;
+import com.example.plantilla.sinch.push.PlaceCallActivity;
 import com.example.plantilla.ui.activity.MainActivity;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -46,6 +48,7 @@ public class ProfileActivity extends AppCompatActivity {
     private FirebaseStorage firebaseStorage;
     private TextView textViewemailname;
     private EditText editTextName;
+    private ProgressDialog progressDialog;
     private String TAG  = "ProfileActivity";
     //</editor-fold>
 
@@ -62,7 +65,7 @@ public class ProfileActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-
+        initView();
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
         firebaseStorage = FirebaseStorage.getInstance();
@@ -100,6 +103,26 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void initView() {
+        progressDialog = new ProgressDialog(ProfileActivity.this);
+        progressDialog.setMessage("Loading..."); // Setting Message
+        progressDialog.setTitle("Prosesando"); // Setting Title
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER); // Progress Dialog Style Spinner
+        progressDialog.show(); // Display Progress Dialog
+        progressDialog.setCancelable(false);
+        new Thread(new Runnable() {
+            public void run() {
+                try {
+                    Thread.sleep(2000);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                progressDialog.dismiss();
+            }
+        }).start();
+    }
+
     public void buttonClickedEditName(View view) {
         LayoutInflater inflater = getLayoutInflater();
         View alertLayout = inflater.inflate(R.layout.layout_custom_dialog_edit_name, null);

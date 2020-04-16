@@ -36,7 +36,7 @@
     <string name="password">Password</string>
     <string name="title_activity_chat">Chat</string>
 
-    <string name="app_name">Dr Help</string>
+    <string name="app_name">Que paso</string>
     <!--<string name="app_name">Video Conferencia</string>-->
     <string name="aRegistro">Registro</string>
     <string name="aID">Documento de Identidad</string>
@@ -541,13 +541,13 @@ Traductor de Google para empresas:Google Translator Toolki</string>
     <string name="psicologia">Psicología</string>
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
-    <string name="Enteryourname" tools:ignore="MissingTranslation">Enter your name</string>
-    <string name="Ringing"  tools:ignore="MissingTranslation">Time</string>
-    <string name="Sampleuser"  tools:ignore="MissingTranslation">User</string>
-    <string name="Incomingcall"  tools:ignore="MissingTranslation">Incoming call</string>
-    <string name="Loggedinas"  tools:ignore="MissingTranslation">Logged in as:</string>
-    <string name="Someone"  tools:ignore="MissingTranslation">Someone</string>
-    <string name="Enterrecipientname"  tools:ignore="MissingTranslation">Enter recipient name</string>
+    <string name="Enteryourname" tools:ignore="MissingTranslation">Tu nombre</string>
+    <string name="Ringing"  tools:ignore="MissingTranslation">Tiempo</string>
+    <string name="Sampleuser"  tools:ignore="MissingTranslation">Usuario</string>
+    <string name="Incomingcall"  tools:ignore="MissingTranslation">Llamada entrante</string>
+    <string name="Loggedinas"  tools:ignore="MissingTranslation">Conectado como:</string>
+    <string name="Someone"  tools:ignore="MissingTranslation">Alguien</string>
+    <string name="Enterrecipientname"  tools:ignore="MissingTranslation">Nombre del destinatario</string>
 
     <string name="paisesu">Paises donde estamos ubicados</string>
 
@@ -603,4 +603,11 @@ Traductor de Google para empresas:Google Translator Toolki</string>
     <string name="edit_profile">Editar Perfil</string>
     <string name="dies">Telefono</string>
     <string name="mail_address">Direccion Email</string>
+    <string name="errorautentucacionred">Problemas de autenticación</string>
+    <string name="contactos">Contacto</string>
+    <string name="contacto_no_encontrado">Contacto no encontrado</string>
+    <string name="el_contacto">El contacto identificado como numero fijo o tradicional</string>
+    <string name="ingresar">Ingresar</string>
+    <string name="llamar">Llamar</string>
+    <string name="creditos">Creditos</string>
 </resources>

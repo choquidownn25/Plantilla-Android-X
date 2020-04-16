@@ -256,4 +256,12 @@ public class SinchService extends Service {
             editor.commit();
         }
     }
+
+    public static String getAppKey() {
+        return APP_KEY;
+    }
+
+    public static String getAppSecret() {
+        return APP_SECRET;
+    }
 }

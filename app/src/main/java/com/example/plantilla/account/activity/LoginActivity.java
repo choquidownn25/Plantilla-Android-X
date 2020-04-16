@@ -1,10 +1,12 @@
 package com.example.plantilla.account.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 //import android.support.annotation.NonNull;
 //import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,12 +17,24 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.plantilla.R;
+import com.example.plantilla.account.activity.model.LoginInfo;
+import com.example.plantilla.account.activity.model.Users;
+import com.example.plantilla.api.ILoguinService;
+import com.example.plantilla.api.RetrofitClientInstance;
+import com.example.plantilla.error.MessajeError;
 import com.example.plantilla.ui.activity.MainActivity;
+import com.example.plantilla.utilidad.SessionPrefs;
+import com.example.plantilla.webrtc.chat.Mensaje;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -32,11 +46,19 @@ public class LoginActivity extends AppCompatActivity {
     private Button btnSignup;
     private ProgressBar progressBar;
     private FirebaseAuth firebaseAuth; //Clase Firebase
+    private ILoguinService mHaceTokkenApi;
+    private RetrofitClientInstance retrofitClientInstance;
+    private Users users;
+    private String grant_type = "password";
+    private LoginInfo loginInfo;
+    private Context context;
+    private MessajeError menssajeError;
     //endregion
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-         setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_login);
+        context = getApplicationContext();
         email  = (EditText) findViewById(R.id.email);
         password  = (EditText) findViewById(R.id.password);
         loginButton  = (Button) findViewById(R.id.login_button);
@@ -126,9 +148,41 @@ public class LoginActivity extends AppCompatActivity {
                 finish();
             }
             if (firebaseUser != null) {
+
+//                mHaceTokkenApi = RetrofitClientInstance.getRetrofit().create(ILoguinService.class);
+//                String userName = String.valueOf(email);
+//                String contrasena = String.valueOf(password);
+//                users = new Users();
+//                users.setToken(grant_type);
+//                users.setUserName(userName);
+//                users.setPasswordHash(contrasena);
+//
+//                Call<LoginInfo> call = mHaceTokkenApi.basicLogin("password", userName, contrasena);
+//                call.enqueue(new Callback<LoginInfo>() {
+//                    @Override
+//                    public void onResponse(Call<LoginInfo> call, Response<LoginInfo> response) {
+//
+//                        Log.d("TAG",response.code()+"");
+//                        loginInfo = new LoginInfo(grant_type, userName, contrasena);
+//
+//                        SessionPrefs.get(LoginActivity.this).saveAffiliate(response.body());
+//                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//                        startActivity(intent);
+//                        finish();
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Call<LoginInfo> call, Throwable t) {
+//
+//                        Log.d("TAG-",t.getMessage() +"");
+//                        menssajeError.errorAutenticacion(context);
+//                    }
+//                });
+
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
+
             }
         }
     };

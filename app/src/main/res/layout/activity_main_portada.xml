@@ -53,7 +53,7 @@
                     android:titleTextColor="#FFFFFF"
                     android:background="#FFFFFF"
                     app:layout_scrollFlags="scroll|enterAlways"
-                    app:navigationIcon="@drawable/ic_launchert"
+                    app:navigationIcon="@mipmap/video_call"
                     tools:targetApi="m">
 
                 </androidx.appcompat.widget.Toolbar>

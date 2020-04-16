@@ -15,12 +15,13 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import com.example.plantilla.sinch.config.util.SinchServices;
 
 
-public abstract class BaseActivity extends Activity implements ServiceConnection {
+public abstract class BaseActivity extends AppCompatActivity implements ServiceConnection {
 
     private SinchServices.SinchServiceInterface mSinchServiceInterface;
 

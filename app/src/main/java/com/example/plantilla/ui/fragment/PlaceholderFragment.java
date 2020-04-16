@@ -1,6 +1,7 @@
 package com.example.plantilla.ui.fragment;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,18 +15,22 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.plantilla.R;
+import com.example.plantilla.sinch.push.PlaceCallActivity;
 import com.example.plantilla.ui.adapter.GridAdapter;
 import com.example.plantilla.ui.adapter.GridViewAdapter;
 import com.example.plantilla.ui.tab.fragment.TabsActivity;
 import com.example.plantilla.utilidad.Container;
 import com.github.captain_miao.optroundcardview.OptRoundCardView;
 import com.example.plantilla.sinch.push.LoginActivity;
+import com.sinch.android.rtc.SinchError;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -128,6 +133,7 @@ public class PlaceholderFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 context.startActivity(new Intent(context, LoginActivity.class));
+//                context.startActivity(new Intent(context, PlaceCallActivity.class));
             }
         });
         alName = new ArrayList<>(Arrays.asList(getString(R.string.chat), getString(R.string.recicleviews), getString(R.string.camara), getString(R.string.sqllite), getString(R.string.sqllite),  getString(R.string.sqllite),  getString(R.string.sqllite), getString(R.string.uber)));
@@ -146,4 +152,6 @@ public class PlaceholderFragment extends Fragment {
         mRecyclerView.setAdapter(mAdapter);
         return rootView;
     }
+
+
 }
