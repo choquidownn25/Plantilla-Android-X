@@ -7,9 +7,9 @@
         <item android:id="@+id/nav_item_two"
             android:icon="@drawable/baseline_create_black_24dp"
             android:title="@string/editar" />
-        <!--<item android:id="@+id/nav_item_three"
+        <item android:id="@+id/nav_item_three"
             android:icon="@drawable/ic_launcher"
-            android:title="Item 3" />-->
+            android:title="Item 3" />
     </group>
 
     <group android:id="@+id/group_menu">

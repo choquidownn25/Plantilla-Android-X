@@ -319,9 +319,10 @@
                                 android:id="@+id/bntFormularioCondireccion"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:background="#8BC34A"
+                                android:textColor="@color/text_profile"
+                                android:background="@drawable/rounded_button_settings"
                                 android:text="@string/apEnviar"
-                                android:textColor="#000" />
+                                />
 
 
 

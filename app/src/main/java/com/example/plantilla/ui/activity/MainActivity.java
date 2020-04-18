@@ -310,12 +310,16 @@ public class MainActivity extends AppCompatActivity implements CardAdapter.Liste
                 // Handle the camera action
                 Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
                 startActivity(intent);
-            }
-            if (id == R.id.nav_item_two) {
+            }else if (id == R.id.nav_item_two) {
                 // Handle the camera action
                 Intent intent = new Intent(MainActivity.this, EditProfileActivity.class);
                 startActivity(intent);
-            } /*else if (id == R.id.nav_item_three) {
+            } else if (id == R.id.nav_item_three) {
+                // Handle the camera action
+                Intent intent = new Intent(MainActivity.this, com.example.plantilla.payu.MainActivity.class);
+                startActivity(intent);
+            }
+            /*else if (id == R.id.nav_item_three) {
 
         } else if (id == R.id.nav_item_four) {
 

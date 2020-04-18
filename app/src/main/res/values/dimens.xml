@@ -46,4 +46,8 @@
     <dimen name="statusbar_col">220dp</dimen>
     <dimen name="appbar_padding">16dp</dimen>
     <dimen name="label_texto">12dp</dimen>
+    <dimen name="label_texto_car">48dp</dimen>
+    <dimen name="label_textodos">14dp</dimen>
+    <dimen name="button_press_elevation_imagen">600dp</dimen>
+    <dimen name="button_press_elevation_imagen_small">200dp</dimen>
 </resources>

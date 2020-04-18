@@ -136,8 +136,8 @@ public class PlaceholderFragment extends Fragment {
 //                context.startActivity(new Intent(context, PlaceCallActivity.class));
             }
         });
-        alName = new ArrayList<>(Arrays.asList(getString(R.string.chat), getString(R.string.recicleviews), getString(R.string.camara), getString(R.string.sqllite), getString(R.string.sqllite),  getString(R.string.sqllite),  getString(R.string.sqllite), getString(R.string.uber)));
-        alImage = new ArrayList<>(Arrays.asList(R.drawable.histoclinica, R.drawable.examen, R.drawable.disponible, R.drawable.consulta, R.drawable.cuidsalud, R.drawable.webrtcportalconetividad, R.drawable.familia, R.drawable.ic_directions_car_black_24dp));
+        alName = new ArrayList<>(Arrays.asList(getString(R.string.chat), getString(R.string.recicleviews), getString(R.string.camara), getString(R.string.sqllite), getString(R.string.sqllite),  getString(R.string.sqllite),  getString(R.string.uber), getString(R.string.pago), getString(R.string.sqllite)));
+        alImage = new ArrayList<>(Arrays.asList(R.drawable.histoclinica, R.drawable.examen, R.drawable.disponible, R.drawable.consulta, R.drawable.cuidsalud, R.drawable.webrtcportalconetividad, R.drawable.ic_directions_car_black_24dp, R.drawable.services_card, R.drawable.familia));
 
 
         // Llama el RecyclerView

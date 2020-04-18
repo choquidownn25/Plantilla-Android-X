@@ -291,10 +291,30 @@
                                 android:id="@+id/bntFormularioFoto"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:background="#8BC34A"
                                 android:text="@string/examenfoto2"
-                                android:textColor="#000" />
+                                android:textColor="@color/text_profile"
+                                android:background="@drawable/rounded_button_settings"
+                                />
 
+
+                            <TextView
+                                android:id="@+id/textViewObservars"
+                                style="@style/TextAppearance.AppCompat.Subhead.Inverse"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/observacion"
+                                android:textColor="#000000"
+                                android:visibility="invisible"/>
+
+                            <Button
+
+                                android:id="@+id/bntFormularioCondireccion"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/text_profile"
+                                android:background="@drawable/rounded_button_settings"
+                                android:text="@string/apEnviar"
+                                />
 
 
                         </LinearLayout>
