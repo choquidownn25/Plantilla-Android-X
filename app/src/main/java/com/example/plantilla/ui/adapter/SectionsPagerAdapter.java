@@ -14,6 +14,7 @@ import com.example.plantilla.ui.activity.MainActivity_Copidrogras_Col;
 import com.example.plantilla.ui.fragment.PlaceholderFragment;
 import com.example.plantilla.ui.fragment.RecycleSegViewFragment;
 import com.example.plantilla.ui.fragment.RecycleViewFragment;
+import com.example.plantilla.video.MainActivityVideo;
 
 /**
  * @author YanLu
@@ -42,6 +43,8 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
                 return RecycleSegViewFragment.newInstance(position);
             case 3:
                 return RecycleViewFragment.newInstance(position + 1);
+            case 4:
+                return MainActivityVideo.newInstance(position + 1);
             default:
                 return PlaceholderFragment.newInstance(position + 1);
         }
@@ -50,7 +53,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         // Mostrar 3  paginas.
-        return 4;
+        return 5;
     }
 
     @Override
@@ -64,6 +67,8 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
                 return "Estado del servicio";
             case 3:
                 return "Calcular Costo";
+            case 4:
+                return "Video";
         }
         return null;
     }

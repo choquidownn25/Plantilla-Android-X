@@ -48,6 +48,7 @@ import java.util.Date;
 
 public class ActivityOrden extends AppCompatActivity {
 
+    //<editor-fold desc="Atributos">
     private TextView nombreCliente;
     private EditText direccionDomicilio;
     private EditText descripcion;
@@ -128,6 +129,7 @@ public class ActivityOrden extends AppCompatActivity {
             "Vip"
     };
     private String datoHora;
+    //</editor-fold>
 
     @SuppressLint("WrongViewCast")
     @Override

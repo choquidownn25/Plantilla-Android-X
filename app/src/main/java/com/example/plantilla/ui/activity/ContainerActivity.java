@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TabHost;
 
+import com.example.plantilla.video.MainActivityVideo;
+
 public class ContainerActivity extends TabActivity {
 
     public void onCreate(Bundle saveInstanceState){
@@ -14,6 +16,6 @@ public class ContainerActivity extends TabActivity {
         host.addTab(host.newTabSpec("one").setIndicator("Video").setContent(new Intent(this, ConnectActivity.class)));
         host.addTab(host.newTabSpec("twoo").setIndicator("Mapa").setContent(new Intent(this, MainActivityLocalizacion.class)));
         host.addTab(host.newTabSpec("three").setIndicator("Grafico").setContent(new Intent(this, GraficoActivity.class)));
-
+        host.addTab(host.newTabSpec("three").setIndicator("Grafico").setContent(new Intent(this, MainActivityVideo.class)));
     }
 }

@@ -301,7 +301,7 @@ public class MainActivity extends AppCompatActivity implements CardAdapter.Liste
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        // Handle navigation view item clicks here.
+        //Haga clic aquí para ver los elementos de la vista de navegación.
         try{
 
             int id = menuItem.getItemId();

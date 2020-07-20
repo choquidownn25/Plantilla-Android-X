@@ -159,17 +159,18 @@
                 android:value="com.example.plantilla.ui.activity.MainActivity" />
         </activity>
 
-        <activity
+       <!-- <activity
             android:name=".mapa.activity.MapsActivity"
             android:label="@string/title_activity_maps"></activity>
         <activity
             android:name=".mapa.activity.MapActivity"
             android:label="@string/title_activity_maps">
-        </activity>
+        </activity>-->
 
         <activity
             android:name=".mapa.activity.MapasActivity"
-            android:label="@string/title_activity_maps">
+            android:label="@string/title_activity_maps"
+            tools:ignore="Instantiatable">
         </activity>
 
         <!-- Estemeramel inicial -->
@@ -401,6 +402,13 @@
                 android:value=".ui.activity.MainActivity" />
         </activity>
         <activity android:name="com.example.plantilla.carritocompras.ui.activity.PayPalCheckoutActivity" android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.activity.MainActivity" />
+        </activity>
+
+        <activity android:name=".video.MainActivityVideo">
+            <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.activity.MainActivity" />
